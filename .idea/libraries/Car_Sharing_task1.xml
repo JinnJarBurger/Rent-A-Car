@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Car_Sharing-task1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/distributions/Car_Sharing-task.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
