@@ -204,6 +204,7 @@ public class CarShare {
     public void insertCustomer(String customer) {
         try {
             connect = DriverManager.getConnection(url);
+            statement = connect.createStatement();
 
             String query = "SELECT MAX(ID) AS maxID FROM CUSTOMER";
 
@@ -222,6 +223,7 @@ public class CarShare {
 
             result.close();
             preStmt.close();
+            statement.close();
             connect.close();
         } catch (SQLException se) {
             se.printStackTrace();

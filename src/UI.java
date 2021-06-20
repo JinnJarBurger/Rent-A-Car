@@ -21,12 +21,10 @@ public class UI {
         int option = sc.nextInt();
         sc.nextLine();
 
-        if (option == 1)
-            menuTwo();
-        else if (option == 2)
-            customerChoice();
-        else if (option == 3) {
-            addCustomer();
+        switch (option) {
+            case 1 -> menuTwo();
+            case 2 -> customerChoice();
+            case 3 -> addCustomer();
         }
     }
 
@@ -61,6 +59,7 @@ public class UI {
         Scanner sc = new Scanner(System.in);
         int option;
 
+        label:
         while (true) {
             System.out.println("""
 
@@ -71,21 +70,25 @@ public class UI {
 
             option = sc.nextInt();
 
-            if (option == 0) {
-                System.out.println();
-                mainMenu();
-                break;
-            } else if (option == 1) {
-                if (!carShare.companyListCustomer(customerName)) {
-                    System.out.println("0. Back");
+            switch (option) {
+                case 0:
+                    System.out.println();
+                    mainMenu();
+                    break label;
+                case 1:
+                    if (!carShare.companyListCustomer(customerName)) {
+                        System.out.println("0. Back");
 
-                    option = sc.nextInt();
-                    customerComCarList(customerName, carShare.getCompanyName(option));
-                }
-            } else if (option == 2) {
-                carShare.returnRented(customerName);
-            } else if (option == 3) {
-                carShare.rentedCar(customerName);
+                        option = sc.nextInt();
+                        customerComCarList(customerName, carShare.getCompanyName(option));
+                    }
+                    break;
+                case 2:
+                    carShare.returnRented(customerName);
+                    break;
+                case 3:
+                    carShare.rentedCar(customerName);
+                    break;
             }
         }
     }
@@ -106,6 +109,7 @@ public class UI {
     public void menuTwo() {
         Scanner sc = new Scanner(System.in);
 
+        label:
         while (true) {
             System.out.println("""
 
@@ -116,16 +120,17 @@ public class UI {
             int option = sc.nextInt();
             sc.nextLine();
 
-            if (option == 0) {
-                System.out.println();
-                mainMenu();
-                break;
-            } else if (option == 1) {
-                menuThree();
-                break;
-            } else if (option == 2) {
-                System.out.println("\nEnter the company name:");
-                carShare.insertCompany(sc.nextLine());
+            switch (option) {
+                case 0 -> {
+                    System.out.println();
+                    mainMenu();
+                    break label;
+                }
+                case 1 -> menuThree();
+                case 2 -> {
+                    System.out.println("\nEnter the company name:");
+                    carShare.insertCompany(sc.nextLine());
+                }
             }
         }
     }
@@ -152,6 +157,7 @@ public class UI {
 
         System.out.println("\n'" + companyName + "' company");
 
+        label:
         while (true) {
             System.out.println("""
                     1. Car list
@@ -162,15 +168,19 @@ public class UI {
             int option = sc.nextInt();
             sc.nextLine();
 
-            if (option == 0) {
-                menuTwo();
-                break;
-            } else if (option == 1) {
-                carShare.getCompanyCarManager(companyName);
-                System.out.println();
-            } else if (option == 2) {
-                System.out.println("\nEnter the car name:");
-                carShare.insertCar(carShare.getCompanyID(companyName), sc.nextLine());
+            switch (option) {
+                case 0 -> {
+                    menuTwo();
+                    break label;
+                }
+                case 1 -> {
+                    carShare.getCompanyCarManager(companyName);
+                    System.out.println();
+                }
+                case 2 -> {
+                    System.out.println("\nEnter the car name:");
+                    carShare.insertCar(carShare.getCompanyID(companyName), sc.nextLine());
+                }
             }
         }
     }
