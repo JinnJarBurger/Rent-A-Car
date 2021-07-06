@@ -22,6 +22,7 @@ public class UI {
         sc.nextLine();
 
         switch (option) {
+            case 0 -> System.exit(0);
             case 1 -> menuTwo();
             case 2 -> customerChoice();
             case 3 -> addCustomer();
